@@ -1,5 +1,105 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Include Font Awesome CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
+    .form-signin {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 15px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        background-color: #333;
+    }
+    .form-signin label {
+        font-weight: bold;
+        color: #fff;
+    }
+    .form-signin input {
+        margin-bottom: 10px;
+        border-radius: 3px;
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #555;
+    }
+    .form-signin input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+    .form-signin .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        width: 100%;
+    }
+    .form-signin .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .form-signin .alert-danger {
+        margin-top: 10px;
+    }
+    /* Eye icon style */
+    .eye-icon {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+</style>
+{% csrf_token %}
+{% comment %} {{ form.as_p }} {% endcomment %}
+    <script>window.location.href = '';</script>
+
+    <form method="post" class="form-signin" style="margin-top:30px">
+        
+            <div class="alert alert-danger"></div>
+        
+
+        <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword">Password</label>
+        <div class="position-relative">
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <i class="eye-icon fas fa-eye" id="togglePassword"></i>
+        </div>
+
+        <input type="hidden" name="_csrf_token"value="">
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Login
+        </button>
+        <hr style="border:none;" >
+
+        <div class="text-center mb-3 pt-6">
+            <hr class="w-25 bg-secondary float-left">
+            <span class="px-2 text-muted">or</span>
+            <hr class="w-25 bg-secondary float-right">
+        </div>
+
+        <a href="" class="btn btn-lg btn-secondary">Sign Up</a>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const passwordInput = document.querySelector('#inputPassword');
+            togglePassword.addEventListener('click', function(e) {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+{% endblock content %}
