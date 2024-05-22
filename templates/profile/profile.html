@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        /* public/css/profile.css */
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #1f1f1f;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-header-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .profile-title {
+            font-size: 24px;
+        }
+        
+        .edit-profile-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .edit-profile-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .profile-body {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+        }
+        
+        .profile-info-item input[type="text"],
+        .profile-info-item input[type="email"],
+        .profile-info-item input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2c3e50;
+            color: #fff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .profile-info-item input[type="text"]:disabled,
+        .profile-info-item input[type="email"]:disabled,
+        .profile-info-item input[type="tel"]:disabled {
+            background-color: transparent;
+            color: #fff;
+        }
+        
+        .profile-info-item input[type="text"]:focus,
+        .profile-info-item input[type="email"]:focus,
+        .profile-info-item input[type="tel"]:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: #34495e;
+        }
+        
+        .enrolled-courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .course {
+            border: 1px solid #666;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #444;
+            transition: transform 0.3s;
+        }
+        
+        .course:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-image {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        .course-details {
+            padding: 10px;
+        }
+        
+        .course-title {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        
+        .course-description {
+            font-size: 14px;
+            margin-top: 0;
+            color: #ccc;
+        }
+        
+        .add-course-section {
+            background-color: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .add-course-section input[type="text"],
+        .add-course-section textarea {
+            width: calc(100% - 40px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #34495e;
+            color: #fff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .add-course-section input[type="text"]:focus,
+        .add-course-section textarea:focus {
+        outline: none;
+        border-color: #3498db;
+        background-color: #2c3e50;
+        }
+        
+        .add-course-section button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+        
+        .add-course-section button:hover {
+        background-color: #2980b9;
+        }
+        
+    </style>
+
+    <div class="profile-container" style="margin-top:50px; margin-bottom:50px">
+        <div class="profile-header">
+            <div class="profile-header-info">
+                <img src="" alt="Avatar" class="avatar">
+                <h1 class="profile-title">WELCOME!</h1>
+            </div>
+            <button class="edit-profile-btn">Edit Profile</button> 
+        </div>
+        <div class="profile-body">
+            <div class="profile-section">
+                <h2 class="section-title">Profile Information</h2>
+                <form id="profile-form">
+                    <div class="profile-info">
+                        <div class="profile-info-item">
+                            <span class="info-label">Name:</span>
+                            <input type="text" name="username" value="" disabled>
+                        </div>
+                        <div class="profile-info-item">
+                            <span class="info-label">Email:</span>
+                            <input type="email" name="email" value="" disabled>
+                        </div>
+                        <div class="profile-info-item">
+                            <span class="info-label">Phone:</span>
+                            <input type="tel" name="telephone" value="" disabled>
+                        </div>
+                        
+                        <!-- Add more profile information as needed -->
+                    </div>
+                     <button type="submit" id="save-profile-btn" class="hidden">Save</button> 
+                </form>
+            </div>
+                <div class="profile-section">
+                <h2 class="section-title">Enrolled Courses</h2>
+                <div class="enrolled-courses">
+                    <!-- Display enrolled courses here -->
+
+                </div>
+            </div>
+        </div>
+        <div class="add-course-section">
+            <h2 class="section-title">Add New Course</h2>
+            <form id="add-course-form">
+                <input type="text" name="title" placeholder="Course Title" required>
+                <textarea name="description" placeholder="Course Description" required></textarea>
+                <button type="submit">Add Course</button>
+            </form>
+        </div> 
+    </div>
+    <script >
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const editBtn = document.querySelector(".edit-profile-btn");
+            const profileForm = document.getElementById("profile-form");
+            const saveBtn = document.getElementById("save-profile-btn");
+        
+            editBtn.addEventListener("click", function () {
+                profileForm.querySelectorAll("input").forEach(input => {
+                    input.disabled = !input.disabled;
+                });
+                saveBtn.classList.toggle("hidden");
+            });
+        
+            profileForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                // Handle form submission to update profile information
+                // using AJAX or submit the form normally
+            });
+        
+            const addCourseForm = document.getElementById("add-course-form");
+        
+            addCourseForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const formData = new FormData(addCourseForm);
+                const courseTitle = formData.get("title");
+                const courseDescription = formData.get("description");
+        
+                // Send course data to backend to add to the database
+                // using AJAX or submit the form normally
+            });
+        });
+
+    </script>
+{% endblock content%}

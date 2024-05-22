@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: trans;
+
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 16px;
+
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Custom Styles */
+    .jumbotron {
+        background: linear-gradient(to right, #1c1c1c, #383838);
+        color: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .jumbotron input[type="text"] {
+        border-radius: 20px;
+        padding: 12px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .jumbotron input[type="text"]:focus {
+        background-color: rgba(255, 255, 255, 0.3);
+        color: #333;
+    }
+
+    .jumbotron button {
+        border-radius: 20px;
+        padding: 12px 24px;
+        background-color: #4c669f;
+        border: none;
+        color: white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .jumbotron button:hover {
+        background-color: #3b5998;
+    }
+
+    .card {
+        background-color: #383838;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        margin-right: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: left 0.3s ease;
+        z-index: 1;
+    }
+
+    /* .card:hover::before {
+        left: 0;
+    } */
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .card img {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+
+    .btn {
+        border-radius: 20px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-light {
+        background-color: #4c669f;
+        color: white;
+        border: 2px solid #4c669f;
+    }
+
+    .btn-light:hover {
+        background-color: #3b5998;
+        border-color: #3b5998;
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    .section-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .section-slider {
+        margin-bottom: 5px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+    .card-body {
+        padding: 20px;
+        position: relative; /* Added this line */
+    }
+    
+    .card .btn {
+        border-radius: 20px;
+        padding: 7px 20px;
+        transition: all 0.3s ease;
+        position: absolute; 
+        bottom: 20px; /* Adjust as necessary */
+        left: 20px; /* Adjust as necessary */
+    }
+</style>
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="jumbotron text-center">
+                <h1 class="display-4 mb-4">Welcome to PREPA DU PREPA</h1>
+                <form class="mb-4" method="get" action="">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search for anything" style="padding:30px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" style="margin:0;">Search</button>
+                        </div>
+                    </div>
+                </form>                 
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <h2 class="text-white text-center section-title fade-in-up">Search Results</h2>
+                <div class="search-results">
+                    <ul>
+                        
+                            <li >
+                                <h3></h3>
+                                <!-- Display other fields as needed -->
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+   
+
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <h2 class="text-white text-center section-title fade-in-up">Professeur</h2>
+            <div class="professor-slider d-flex overflow-auto custom-scrollbar">
+                <div class="card-container d-flex">
+                    
+                        <div class="card mr-3 fade-in-up" style="width: 18rem;">
+                            <img src="" class="card-img-top" alt="Professor">
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+                                <p class="card-text"><b>Email:</b></p>
+                                <a href="" class="btn btn-light">View Details</a>
+                            </div>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <h2 class="text-white text-center section-title fade-in-up">Section</h2>
+            <div class="section-slider d-flex overflow-auto custom-scrollbar">
+                <div class="card-container d-flex">
+                    
+                        <div class="card mr-3 fade-in-up" style="width: 18rem;">
+                            <img src="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+                                <p class="card-text"><b>Level:</b></p>
+                                <p class="card-text"></p>
+                                <br>
+                                <a href="" class="btn btn-light">Explore</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                                    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Slide animation for professor and section sliders
+        const professorSlider = document.querySelector('.professor-slider');
+        const sectionSlider = document.querySelector('.section-slider');
+
+        function slideCards(container) {
+            let cards = container.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in-up');
+                }, index * 100);
+            });
+        }
+
+        if (professorSlider) {
+            slideCards(professorSlider);
+        }
+
+        if (sectionSlider) {
+            slideCards(sectionSlider);
+        }
+
+        // Smooth scroll functionality for custom scrollbar
+        const customScrollbar = document.querySelectorAll('.custom-scrollbar');
+        customScrollbar.forEach(scrollbar => {
+            scrollbar.addEventListener('wheel', e => {
+                e.preventDefault();
+                const delta = e.deltaY || e.detail || e.wheelDelta;
+
+                scrollbar.scrollLeft += delta;
+            });
+        });
+
+        // Handle form submission
+        const searchForm = document.querySelector('form');
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const searchTerm = this.querySelector('input').value;
+                // Perform search or other action
+                console.log("Search term:", searchTerm);
+            });
+        }
+    });
+</script>
+{% endblock content %}

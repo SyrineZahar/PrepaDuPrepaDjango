@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
+    .form-register {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 15px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        background-color: #333;
+    }
+    .form-register label {
+        font-weight: bold;
+        color: #fff;
+    }
+    .form-register input,
+    .form-register select {
+        margin-bottom: 10px;
+        border-radius: 3px;
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #555;
+    }
+    .form-register input:focus,
+    .form-register select:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+    .form-register .form-check {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .form-register .form-check-input {
+        margin-right: 0.5rem;
+    }
+    .form-register .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        width: 100%;
+    }
+    .form-register .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .form-register .alert-danger {
+        margin-top: 10px;
+    }
+    ul {
+        color: #ff4c4c;
+        text-shadow: 1px 1px 2px black;
+        font-size:90%;
+    }
+</style>
+
+<div style="margin-top:20px">
+<form method="post" class="form-register" >
+    <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
+
+    
+        <div class="form-check">
+            
+            <label class="form-check-label" for="registration_form_agreeTerms"></label>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary">Register</button>
+        
+        <hr style="border:none;" >
+
+        <div class="text-center mb-3 pt-6">
+            <hr class="w-25 bg-secondary float-left">
+            <span class="px-2 text-muted">or</span>
+            <hr class="w-25 bg-secondary float-right">
+        </div>
+        <a href="" class="btn btn-lg btn-secondary">Back to Login</a>
+
+</form>
+</div>
+{% endblock content %}
